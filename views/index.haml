@@ -1,0 +1,17 @@
+.row
+	- if @feed	
+		.col-md-4	
+			%h2= 'Patentes'
+			%a{:href => "#{@feed.url}"}= @feed.title	
+			%ul{:style => "max-height:70vh;overflow:scroll;"}
+				- @feed.entries.each do |entry|
+					%li
+						%a{:href => "http://www.google.com/patents/#{entry.summary.match(@patt)[1]}"}= entry.title
+						%p= entry.summary
+		.col-md-4
+			%h2= 'Académico'
+		.col-md-4
+			%h2= 'Noticias'
+			
+	- else	
+		%p{:style => "text-align: center; padding-top: 30px;"}= @empty

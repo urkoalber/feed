@@ -1,0 +1,17 @@
+!!!
+%html
+	%head
+		%title Feed Analyser
+		%meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+		%link{:rel=>"stylesheet", :href=>"//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"}
+	%body
+		%main
+			.container
+				.col-md-6.col-md-offset-3{:style => "text-align: center;"}
+					%h1= 'Bienvenido'
+					%form.form-inline
+						%input.form-control{:name => 'search', :type => 'text', :placeholder => 'Buscar', :value => @search}
+						%input.btn.btn-default{:type => 'submit'}
+			.col-md-12
+				= yield
+		%footer
