@@ -1,41 +1,11 @@
 .row
-	- unless @empty	
-		.col-md-4
-			- if @patents and (@patents.is_a? Feedjira::Parser::RSS or @patents.is_a? Hash)
-				%h2= 'Patentes'
-				- @patents.keys.each do |key|
-					- feed = @patents[key]			
-					%a{:href => "#{feed.url}"}= feed.title
-					%ul{:style => "max-height:70vh;overflow:scroll;"}
-						- feed.entries.each do |entry|
-							%li
-								- if key.include? 'google'
-									%a{:href => "http://www.google.com/patents/#{entry.summary.match(@patt)[1]}"}= entry.title
-								- else
-									%a{:href => entry.url}= entry.title
-								%p= entry.summary if entry.summary
-		.col-md-4
-			- if @academic and (@academic.is_a? Feedjira::Parser::RSS or @academic.is_a? Hash)
-				%h2= 'Académico'
-				- @academic.keys.each do |key|
-					- feed = @academic[key]			
-					%a{:href => "#{feed.url}"}= feed.title
-					%ul{:style => "max-height:70vh;overflow:scroll;"}
-						- feed.entries.each do |entry|
-							%li
-								%a{:href => entry.url}= entry.title
-								%p= entry.summary if entry.summary
-		.col-md-4
-			- if @news and (@news.is_a? Feedjira::Parser::RSS or @news.is_a? Hash)
-				%h2= 'Noticias'
-				- @news.keys.each do |key|
-					- feed = @news[key]			
-					%a{:href => "#{feed.url}"}= feed.title
-					%ul{:style => "max-height:70vh;overflow:scroll;"}
-						- feed.entries.each do |entry|
-							%li
-								%a{:href => entry.url}= entry.title
-								%p= entry.summary if entry.summary
-			
-	- else	
-		%p{:style => "text-align: center; padding-top: 30px;"}= @empty	
+	%p#empty= @empty	
+	#patents.col-md-4
+		%h2= 'Patentes'
+		%img.loader{:src => '/loader_big.gif', :alt => 'loader'}
+	#academic.col-md-4
+		%h2= 'Académico'
+		%img.loader{:src => '/loader_big.gif', :alt => 'loader'}
+	#news.col-md-4
+		%h2= 'Noticias'
+		%img.loader{:src => '/loader_big.gif', :alt => 'loader'}

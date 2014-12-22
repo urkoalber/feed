@@ -1,0 +1,12 @@
+#patents, #academic, #news {
+	text-align: center;	
+	display: none;
+}
+.loader {
+	width: 40px;
+	height: 40px;	
+}
+#empty {
+	text-align: center; 
+	padding-top: 30px;
+}
