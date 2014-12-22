@@ -2,13 +2,12 @@ $( document ).ready( function(){
 	function loadData(url, searchText, destination) {
 		$.getJSON('/api/feed?url=' + url + searchText, function(data){
 			$(destination).find('.loader').first().hide();
-			$(destination).find('.data').append('<a href=' + data.url + '>' + data.title + '</a>');
-			var listData = '<ul>';
+			var listData = '<div class="feed"><a href=' + data.url + '>' + data.title + '</a><ul>';
 			for(var i=0; i < data.items.length; i++){
 				var item = data.items[i];
 				listData += '<li><a href=' + item.url + '>' + item.title + '</a><p>' + item.summary + '</p></li>';
 			}
-			listData += '</ul>';
+			listData += '</ul></div>';
 			$(destination).find('.data').append(listData);
 		});
 	}

@@ -3,40 +3,9 @@ require "sinatra"
 require "feedjira"
 require "json"
 
-def build_routes(routes, search)
-  urls = []
-  routes.each do |route|
-    urls << route + search.gsub(' ', '+')
-  end
-  urls
-end
-
-def build_json_result(feed)
-    
-end
-
 get '/' do
-  patents_routes = [      
-    'http://es.espacenet.com/websyndication/searchFeed?DB=lp.espacenet.com&query=',
-    'http://www.google.es/patents?output=rss&q='    
-  ]
-  news_routes = [
-    'http://es.news.search.yahoo.com/rss?p='
-  ]
-  academic_routes = [
-    'http://academic.research.microsoft.com/Rss?end=10&query='
-  ]
-  
-  @search = params[:search] || ''
-  @patt = /<font.*>.* (.*)<\/font>/i
-  
-  if @search == ''
-    @empty = 'Introduce los términos de búsqueda'
-  else
-    @patents = Feedjira::Feed.fetch_and_parse(build_routes(patents_routes, @search))    
-    @academic = Feedjira::Feed.fetch_and_parse(build_routes(academic_routes, @search))
-    @news = Feedjira::Feed.fetch_and_parse(build_routes(news_routes, @search))
-  end
+  @empty = 'Introduce los términos de búsqueda'  
+  @patt = /<font.*>.* (.*)<\/font>/i  
   
   haml :index
 end
