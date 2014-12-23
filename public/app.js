@@ -16,7 +16,7 @@ $( document ).ready( function(){
 		e.preventDefault();
 		$('#empty').hide();
 		$('#patents').show(); $('#academic').show(); $('#news').show();		
-		var searchText = $('#search').val().replace(/ /g, '+');
+		var searchText = $('#search').val().replace(/ /g, '%2B');
 		
 		var googleUrl = 'http://google.com/patents?output=rss%26q=';		
 		loadData(googleUrl, searchText, '#patents');
