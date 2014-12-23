@@ -16,7 +16,7 @@ $( document ).ready( function(){
 		e.preventDefault();
 		$('#empty').hide();
 		$('#patents').show(); $('#academic').show(); $('#news').show();		
-		var searchText = $('#search').val().replace(/ /g, '%2B');
+		var searchText = $('#search').val().replace(/ /g, '+');
 		
 		//Patents
 		var googleUrl = 'http://google.com/patents?output=rss%26q=';		
@@ -35,6 +35,7 @@ $( document ).ready( function(){
 		var microsoftUrl = 'http://academic.research.microsoft.com/Rss?end=15%26query=';
 		loadData(microsoftUrl, searchText, '#academic');
 		
+
 		//News
 		var yahooUrl = 'http://es.news.search.yahoo.com/rss?p=';
 		loadData(yahooUrl, searchText, '#news');
