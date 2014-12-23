@@ -35,6 +35,7 @@ $( document ).ready( function(){
 		var microsoftUrl = 'http://academic.research.microsoft.com/Rss?end=15%26query=';
 		loadData(microsoftUrl, searchText, '#academic');
 		
+
 		//News
 		var yahooUrl = 'http://es.news.search.yahoo.com/rss?p=';
 		loadData(yahooUrl, searchText, '#news');
