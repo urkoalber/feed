@@ -1,4 +1,24 @@
 $( document ).ready( function(){
+	$.xhrPool = [];
+	$.xhrPool.abortAll = function() {
+    $(this).each(function(idx, jqXHR) {
+        jqXHR.abort();
+				console.log("XHR Aborted: " + jqXHR);
+    });
+    $.xhrPool = [];
+	};
+	$.ajaxSetup({
+    beforeSend: function(jqXHR) {
+        $.xhrPool.push(jqXHR);
+    },
+    complete: function(jqXHR) {
+        var index = $.xhrPool.indexOf(jqXHR);
+        if (index > -1) {
+            $.xhrPool.splice(index, 1);
+        }
+    }
+	});
+
 	function loadData(url, searchText, destination) {
 		$.getJSON('/api/feed?url=' + url + searchText, function(data){
 			$(destination).find('.loader').first().hide();
@@ -11,7 +31,7 @@ $( document ).ready( function(){
 			$(destination).find('.data').append(listData);
 		}).fail(function(jqxhr, textStatus, error){
 			$(destination).find('.loader').first().hide();
-			var errorInfo = '<p style="color:red; text-align: center;">Error: ' + error + '; ' + textStatus + '</p>';
+			var errorInfo = '<p style="color:red; text-align: center;">Request Failed: ' + textStatus + ", " + error + '</p>';
 			$(destination).find('.data').append(errorInfo);
 			console.log(error);
 		});
@@ -19,6 +39,7 @@ $( document ).ready( function(){
 
 	$('#go').click( function(e){
 		e.preventDefault();
+		$.xhrPool.abortAll();
 		$('#empty').hide();
 		$('.loader').show();
 		$('.data').children().remove();
