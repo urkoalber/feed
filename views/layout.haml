@@ -3,6 +3,7 @@
 	%head
 		%title Feed Analyser
 		%meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
+		%link{:rel=>"shortcut icon", :href=>"/favicon.ico", :type=>"image/x-icon"}
 		%link{:rel=>"stylesheet", :href=>"//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"}
 		%link{:rel=>"stylesheet", :href=>"/styles.css"}
 		%script{:src=>"//code.jquery.com/jquery-2.1.3.min.js"}
@@ -15,6 +16,6 @@
 					%form.form-inline
 						%input.form-control{:id => 'search', :name => 'search', :type => 'text', :placeholder => 'Buscar', :value => @search}
 						%input.btn.btn-default{:id => 'go', :type => 'submit'}
-			#container.col-md-12				
-				= yield		
+			#container.col-md-12
+				= yield
 		%footer

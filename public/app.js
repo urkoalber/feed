@@ -10,8 +10,10 @@ $( document ).ready( function(){
 			listData += '</ul></div>';
 			$(destination).find('.data').append(listData);
 		}).fail(function(jqxhr, textStatus, error){
-			var errorInfo = '<p style="color:red;">Error ' + error + ' ' + textStatus + '</p>';
+			$(destination).find('.loader').first().hide();
+			var errorInfo = '<p style="color:red; text-align: center;">Error: ' + error + '; ' + textStatus + '</p>';
 			$(destination).find('.data').append(errorInfo);
+			console.log(error);
 		});
 	}
 
