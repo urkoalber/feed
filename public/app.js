@@ -1,20 +1,20 @@
 $( document ).ready( function(){
-	$.xhrPool = [];
-	$.xhrPool.abortAll = function() {
-    $(this).each(function(idx, jqXHR) {
+	var xhrPool = [];
+	function abortAll() {
+		$(xhrPool).each(function(idx, jqXHR) {
         jqXHR.abort();
 				console.log("XHR Aborted: " + jqXHR);
     });
-    $.xhrPool = [];
+    xhrPool = [];
 	};
 	$.ajaxSetup({
     beforeSend: function(jqXHR) {
-        $.xhrPool.push(jqXHR);
+        xhrPool.push(jqXHR);
     },
     complete: function(jqXHR) {
-        var index = $.xhrPool.indexOf(jqXHR);
+        var index = xhrPool.indexOf(jqXHR);
         if (index > -1) {
-            $.xhrPool.splice(index, 1);
+            xhrPool.splice(index, 1);
         }
     }
 	});
