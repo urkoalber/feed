@@ -11,15 +11,17 @@ $( document ).ready( function(){
 			$(destination).find('.data').append(listData);
 		});
 	}
-	
+
 	$('#go').click( function(e){
 		e.preventDefault();
 		$('#empty').hide();
-		$('#patents').show(); $('#academic').show(); $('#news').show();		
+		$('.loader').show();
+		$('.data').children().remove();
+		$('#patents').show(); $('#academic').show(); $('#news').show();
 		var searchText = $('#search').val().replace(/ /g, '%2B');
-		
+
 		//Patents
-		var googleUrl = 'http://google.com/patents?output=rss%26q=';		
+		var googleUrl = 'http://google.com/patents?output=rss%26q=';
 		loadData(googleUrl, searchText, '#patents');
 
 		var espacenetUrl = 'http://es.espacenet.com/websyndication/searchFeed?DB=lp.espacenet.com%26query=';
@@ -30,15 +32,15 @@ $( document ).ready( function(){
 
 		var epoUrl = 'https://register.epo.org/rssSearch?query=';
 		loadData(epoUrl, searchText, '#patents');
-		
+
 		//Academic
 		var microsoftUrl = 'http://academic.research.microsoft.com/Rss?end=15%26query=';
 		loadData(microsoftUrl, searchText, '#academic');
-		
+
 		//News
 		var yahooUrl = 'http://es.news.search.yahoo.com/rss?p=';
 		loadData(yahooUrl, searchText, '#news');
-		
+
 		return false;
 	});
 });
