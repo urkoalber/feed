@@ -39,7 +39,7 @@ $( document ).ready( function(){
 
 	$('#go').click( function(e){
 		e.preventDefault();
-		$.xhrPool.abortAll();
+		abortAll();
 		$('#empty').hide();
 		$('.loader').show();
 		$('.data').children().remove();
